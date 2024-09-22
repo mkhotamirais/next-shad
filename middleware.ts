@@ -5,16 +5,19 @@ import { getToken } from "next-auth/jwt";
 
 const { auth } = NextAuth(authConfig);
 
+const authRoutes = ["/login", "/register"];
+const publicRoutes = ["/", "/theory", "/components", "/login", "/register"];
+
 export default auth(async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.AUTH_SECRET as string });
   const { pathname } = req.nextUrl;
 
-  if (!token && pathname === "/dashboard") {
-    const url = req.nextUrl.clone();
-    if (url.pathname !== "/login") {
-      url.pathname = "/login";
-      return NextResponse.redirect(url);
-    }
+  if (!token && !publicRoutes.includes(pathname)) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  if (token && authRoutes.includes(pathname)) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next();
