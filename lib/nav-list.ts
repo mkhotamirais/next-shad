@@ -1,5 +1,9 @@
 export const navList = [
   {
+    label: "Home",
+    href: "/",
+  },
+  {
     label: "Theory",
     href: "/theory",
     subMenu: [
@@ -30,5 +34,9 @@ export const navList = [
         href: "/components",
       },
     ],
+  },
+  {
+    label: "Dashboard",
+    href: "/dashboard",
   },
 ];
