@@ -37,7 +37,7 @@ export function MobileNav() {
             {navList.map((item, i) => (
               <div key={i}>
                 <div className="flex justify-between gap-1 text-sm pb-2">
-                  <Link href={item.href} className="border-b border-primary py-3 w-full">
+                  <Link onClick={closeNav} href={item.href} className="border-b border-primary py-3 w-full">
                     {item.label}
                   </Link>
                   <motion.div
@@ -61,7 +61,7 @@ export function MobileNav() {
                     >
                       {item.subMenu.map((itm, idx) => (
                         <div key={idx}>
-                          <Link href={itm.href} className="py-2 block pl-2">
+                          <Link onClick={closeNav} href={itm.href} className="py-2 block pl-2">
                             {itm.label}
                           </Link>
                         </div>
