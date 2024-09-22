@@ -17,8 +17,6 @@ import {
 export function Header() {
   const { data: session } = useSession();
 
-  console.log(session?.user?.image);
-
   return (
     <header className="border-b">
       <div className="container">
