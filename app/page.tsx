@@ -7,7 +7,7 @@ export default function HomePage() {
         <div className="flex flex-col justify-center items-center space-y-4">
           <h1>Welcome</h1>
           <p>Description</p>
-          <Button size={"lg"}>Action</Button>
+          <Button size={"lg"}>Action Call</Button>
         </div>
       </div>
     </section>
