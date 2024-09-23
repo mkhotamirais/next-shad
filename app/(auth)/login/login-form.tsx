@@ -6,14 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-<<<<<<< HEAD
-// import { useRouter } from "next/navigation";
-// import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
-import { useState } from "react";
-
-const LoginSchema = z.object({
-=======
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
@@ -21,7 +13,6 @@ import { useState } from "react";
 import axios from "axios";
 
 export const LoginSchema = z.object({
->>>>>>> 0364184 (err1)
   email: z.string().email("Invalid email address"),
   password: z.string().min(1, "Password is required"),
 });
@@ -30,36 +21,12 @@ type LoginType = z.infer<typeof LoginSchema>;
 
 export function LoginForm() {
   const [pending, setPending] = useState(false);
-<<<<<<< HEAD
-  // const router = useRouter();
-=======
   const router = useRouter();
->>>>>>> 0364184 (err1)
 
   const form = useForm<LoginType>({
     resolver: zodResolver(LoginSchema),
     defaultValues: { email: "", password: "" },
   });
-<<<<<<< HEAD
-  const onSubmit = async (values: LoginType) => {
-    setPending(true);
-    console.log(values);
-    // const { email, password } = values;
-    // await account
-    //   // .createEmailPasswordSession(email, password)
-    //   .then(() => {
-    //     // setUser();
-    //     toast.success("Login successful");
-    //     router.push("/");
-    //     router.refresh();
-    //   })
-    //   .catch((err) => {
-    //     toast.error(err.message);
-    //   })
-    //   .finally(() => {
-    //     setPending(false);
-    //   });
-=======
 
   const onSubmit = async (values: LoginType) => {
     setPending(true);
@@ -77,7 +44,6 @@ export function LoginForm() {
       .finally(() => {
         setPending(false);
       });
->>>>>>> 0364184 (err1)
   };
 
   return (

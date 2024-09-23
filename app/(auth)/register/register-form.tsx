@@ -7,16 +7,6 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-<<<<<<< HEAD
-// import { account } from "@/appwrite/config";
-import { Loader2 } from "lucide-react";
-// import { toast } from "sonner";
-// import { useRouter } from "next/navigation";
-
-const RegisterSchema = z
-  .object({
-    email: z.string().email("Invalid email address"),
-=======
 import { Loader2 } from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
@@ -25,7 +15,6 @@ import { useRouter } from "next/navigation";
 const RegisterSchema = z
   .object({
     email: z.string().min(1, "Email is required").email("Invalid email address"),
->>>>>>> 0364184 (err1)
     password: z.string().min(1, "Password is required"),
     confPassword: z.string().min(1, "Please confirm your password"),
   })
@@ -38,11 +27,7 @@ type RegisterType = z.infer<typeof RegisterSchema>;
 
 export function RegisterForm() {
   const [pending, setPending] = useState(false);
-<<<<<<< HEAD
-  // const router = useRouter();
-=======
   const router = useRouter();
->>>>>>> 0364184 (err1)
 
   const form = useForm<RegisterType>({
     resolver: zodResolver(RegisterSchema),
@@ -50,22 +35,6 @@ export function RegisterForm() {
   });
   const onSubmit = async (values: RegisterType) => {
     setPending(true);
-<<<<<<< HEAD
-    console.log(values);
-    // const { email, password } = values;
-    // await account
-    //   // .create("unique()", email, password)
-    //   .then(() => {
-    //     toast.success("Account created successfully");
-    //     router.push("/login");
-    //   })
-    //   .catch(() => {
-    //     toast.error("Register failed");
-    //   })
-    //   .finally(() => {
-    //     setPending(false);
-    //   });
-=======
     await axios
       .post(`/api/auth/register`, values)
       .then((res) => {
@@ -80,7 +49,6 @@ export function RegisterForm() {
       .finally(() => {
         setPending(false);
       });
->>>>>>> 0364184 (err1)
   };
 
   return (
@@ -108,10 +76,7 @@ export function RegisterForm() {
               <FormControl>
                 <Input disabled={pending} type="password" placeholder="********" {...field} />
               </FormControl>
-<<<<<<< HEAD
-=======
               <FormMessage />
->>>>>>> 0364184 (err1)
             </FormItem>
           )}
         />
@@ -124,10 +89,7 @@ export function RegisterForm() {
               <FormControl>
                 <Input disabled={pending} type="password" placeholder="********" {...field} />
               </FormControl>
-<<<<<<< HEAD
-=======
               <FormMessage />
->>>>>>> 0364184 (err1)
             </FormItem>
           )}
         />
