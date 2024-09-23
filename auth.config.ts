@@ -20,18 +20,20 @@ export default {
       },
     }),
   ],
-  cookies: {
-    sessionToken: {
-      name: `__Secure-next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production", // Aktifkan hanya di production
-      },
-    },
-  },
-  secret: process.env.AUTH_SECRET, // Pastikan ini diatur dengan benar
+  // cookies: {
+  //   sessionToken: {
+  //     name: `__Secure-next-auth.session-token`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: "lax",
+  //       path: "/",
+  //       secure: process.env.NODE_ENV === "production", // Aktifkan hanya di production
+  //     },
+  //   },
+  // },
+  // jwt: {secret},
+  // secret: process.env.AUTH_SECRET, // Pastikan ini diatur dengan benar
+  // debug: process.env.NODE_ENV === "development",
   // jwt: {secret: process.env.AUTH_SECRET as string},
   // callbacks: {
   //   async signIn() {

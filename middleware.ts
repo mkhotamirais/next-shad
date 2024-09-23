@@ -9,9 +9,11 @@ const authRoutes = ["/login", "/register"];
 const publicRoutes = ["/", "/theory", "/components", "/login", "/register"];
 
 export default auth(async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.AUTH_SECRET as string });
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET as string });
   const { pathname } = req.nextUrl;
-  console.log(token);
+
+  console.log("Request URL:", req.nextUrl.href); // Cek URL request
+  console.log("Token:", token);
   console.log("halo semua");
 
   if (token && authRoutes.includes(pathname)) {
