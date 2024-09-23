@@ -12,6 +12,7 @@ export default auth(async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.AUTH_SECRET as string });
   const { pathname } = req.nextUrl;
   console.log(token);
+  console.log("halo semua");
 
   if (token && authRoutes.includes(pathname)) {
     return NextResponse.redirect(new URL("/", req.url));
