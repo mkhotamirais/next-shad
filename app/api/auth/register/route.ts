@@ -15,13 +15,24 @@ export const POST = async (req: NextRequest) => {
     const salt = await genSalt(10);
     const hashPass = await hash(password, salt);
 
+    // add user
     const existingUser = await db.user.findFirst({ where: { email } });
     if (existingUser) return NextResponse.json({ error: `Email already exists` }, { status: 409 });
 
     let data: { email: string; password: string; role?: UserRole } = { email, password: hashPass };
     if (email === "ahmad@gmail.com") data = { ...data, role: UserRole.ADMIN };
 
-    await db.user.create({ data });
+    const newUser = await db.user.create({ data });
+
+    // add account
+    await db.account.create({
+      data: {
+        userId: newUser.id,
+        provider: "credentials",
+        providerAccountId: newUser.id.toString(), // providerAccountId bisa berupa user ID
+        type: "credentials",
+      },
+    });
 
     return NextResponse.json({ message: `Register ${body.email} success!` }, { status: 200 });
   } catch (error) {

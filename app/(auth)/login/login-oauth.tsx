@@ -34,7 +34,7 @@ export default function LoginOauth() {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-2 py-2">
+    <div className="grid grid-rows-2 sm:grid-rows-1 grid-cols-1 sm:grid-cols-2 gap-2 py-2">
       <Button variant={"outline"} onClick={loginGithub}>
         {pendingGithub ? <Loader2 className="mr-2 animate-spin size-4" /> : <FaGithub className="mr-2" />}
         Login With Github

@@ -26,8 +26,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           data: { provider: account?.provider, lastLogin: new Date() },
         });
       }
-
-      if (account?.provider !== "credentials") return true;
       return true;
     },
     async session({ token, session }) {

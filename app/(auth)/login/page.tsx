@@ -19,12 +19,14 @@ export default async function LoginPage() {
   }
 
   return (
-    <div className="max-w-md mx-auto my-16 border rounded-xl p-6">
-      <LoginOauth />
-      <LoginForm />
-      <Button asChild variant={"link"} className="mt-4 mx-auto w-full">
-        <Link href="/register">Do not have an account?</Link>
-      </Button>
-    </div>
+    <section className="container">
+      <div className="max-w-md mx-auto my-16 border rounded-xl p-6">
+        <LoginOauth />
+        <LoginForm />
+        <Button asChild variant={"link"} className="mt-4 mx-auto w-full">
+          <Link href="/register">Do not have an account?</Link>
+        </Button>
+      </div>
+    </section>
   );
 }
