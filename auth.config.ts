@@ -31,7 +31,8 @@ export default {
       },
     },
   },
-  secret: process.env.NEXTAUTH_SECRET, // Pastikan ini diatur dengan benar
+  secret: process.env.AUTH_SECRET, // Pastikan ini diatur dengan benar
+  // jwt: {secret: process.env.AUTH_SECRET as string},
   // callbacks: {
   //   async signIn() {
   //     // Ini bisa dipakai untuk memeriksa apakah proses login berhasil
