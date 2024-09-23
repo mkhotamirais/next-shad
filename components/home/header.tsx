@@ -5,7 +5,6 @@ import { ModeToggle } from "../mode-toggle";
 import { DesktopNav } from "./desktop-nav";
 import { MobileNav } from "./mobile-nav";
 import { Button } from "../ui/button";
-import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -13,10 +12,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Session } from "next-auth";
 
-export function Header() {
-  const { data: session } = useSession();
-
+export function Header({ session }: { session?: Session | null }) {
   return (
     <header className="border-b">
       <div className="container">
@@ -45,7 +43,7 @@ export function Header() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem>Account</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
+                    <DropdownMenuItem asChild>logout</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>

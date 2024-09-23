@@ -31,7 +31,7 @@ export default {
   //     },
   //   },
   // },
-  // jwt: {secret},
+  // jwt: {secret: process.env.NEXTAUTH_SECRET as string},
   // secret: process.env.AUTH_SECRET, // Pastikan ini diatur dengan benar
   // debug: process.env.NODE_ENV === "development",
   // jwt: {secret: process.env.AUTH_SECRET as string},
