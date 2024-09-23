@@ -6,11 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
+// import { useRouter } from "next/navigation";
 
 export const LoginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -21,7 +21,7 @@ type LoginType = z.infer<typeof LoginSchema>;
 
 export function LoginForm() {
   const [pending, setPending] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   const form = useForm<LoginType>({
     resolver: zodResolver(LoginSchema),
@@ -34,8 +34,9 @@ export function LoginForm() {
       .post(`/api/auth/login`, values)
       .then((res) => {
         toast.success(res?.data?.message);
-        router.push("/dashboard");
-        router.refresh();
+        // router.push("/dashboard");
+        // router.refresh();
+        window.location.href = "/dashboard";
       })
       .catch((err) => {
         console.log(err);
