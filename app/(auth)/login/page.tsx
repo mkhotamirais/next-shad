@@ -3,13 +3,28 @@ import { LoginForm } from "./login-form";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import LoginOauth from "./login-oauth";
+<<<<<<< HEAD
+=======
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+>>>>>>> 0364184 (err1)
 
 export const metadata: Metadata = {
   title: "Login Page",
   description: "This project uses nextjs and appwrite",
 };
 
+<<<<<<< HEAD
 export default function LoginPage() {
+=======
+export default async function LoginPage() {
+  const session = await auth();
+
+  if (session) {
+    redirect("/dashboard");
+  }
+
+>>>>>>> 0364184 (err1)
   return (
     <div className="max-w-md mx-auto my-16 border rounded-xl p-6">
       <h1 className="text-2xl font-bold mb-4">Login Page</h1>

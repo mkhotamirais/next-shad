@@ -5,6 +5,10 @@ import { Header } from "@/components/home/header";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Footer } from "@/components/home/footer";
 import { SessionProvider } from "next-auth/react";
+<<<<<<< HEAD
+=======
+import { Toaster } from "sonner";
+>>>>>>> 0364184 (err1)
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,6 +36,10 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} relative antialiased flex flex-col min-h-screen`}>
         <SessionProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+<<<<<<< HEAD
+=======
+            <Toaster richColors />
+>>>>>>> 0364184 (err1)
             <Header />
             <main className="grow relative">{children}</main>
             <Footer />
