@@ -1,16 +1,18 @@
-// import { useSession } from "next-auth/react";
+"use client";
 
-import { LogoutBtn } from "@/components/home/logout-btn";
+import ProtectedPage from "@/components/protected-page";
+import { useSession } from "next-auth/react";
 
 export default function DashboardPage() {
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
+
+  if (!session) return <ProtectedPage />;
 
   return (
     <div>
       <div className="container">
         <div className="flex items-center justify-center">
-          <h1>Welcome</h1>
-          <LogoutBtn />
+          <h1>Welcome {session?.user?.name}</h1>
         </div>
       </div>
     </div>

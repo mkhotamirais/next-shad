@@ -1,30 +1,33 @@
 import NextAuth from "next-auth";
 import authConfig from "./auth.config";
-import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
+// import { NextRequest, NextResponse } from "next/server";
 
-const { auth } = NextAuth(authConfig);
+export const { auth: middleware } = NextAuth(authConfig);
 
-const authRoutes = ["/login", "/register"];
-const publicRoutes = ["/", "/theory", "/components", "/login", "/register"];
+// import { getToken } from "next-auth/jwt";
 
-export default auth(async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.AUTH_SECRET as string });
-  const { pathname } = req.nextUrl;
+// const { auth } = NextAuth(authConfig);
 
-  console.log("Token:", token);
-  console.log("halo semua");
+// const authRoutes = ["/login", "/register"];
+// const publicRoutes = ["/", "/theory", "/components", "/login", "/register"];
 
-  if (token && authRoutes.includes(pathname)) {
-    return NextResponse.redirect(new URL("/", req.url));
-  }
+// export default auth(async function middleware(req: NextRequest) {
+// const token = await getToken({ req, secret: process.env.AUTH_SECRET as string });
+// const { pathname } = req.nextUrl;
 
-  if (!token && !publicRoutes.includes(pathname)) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+// console.log("Token:", token);
+// console.log("halo semua");
 
-  return NextResponse.next();
-});
+// if (token && authRoutes.includes(pathname)) {
+//   return NextResponse.redirect(new URL("/", req.url));
+// }
+
+// if (!token && !publicRoutes.includes(pathname)) {
+//   return NextResponse.redirect(new URL("/login", req.url));
+// }
+
+//   return NextResponse.next();
+// });
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],

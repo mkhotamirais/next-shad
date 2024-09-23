@@ -1,12 +1,13 @@
-import { LogoutBtn } from "@/components/home/logout-btn";
+"use client";
+
 import { Button } from "@/components/ui/button";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function HomePage() {
-  // const { data: session } = useSession();
-  // if (session) {
-  //   console.log(session);
-  // }
+  const { data: session } = useSession();
+  if (session) {
+    console.log(session);
+  }
 
   return (
     <section className="py-32">
@@ -15,7 +16,6 @@ export default function HomePage() {
           <h1>Welcomeee</h1>
           <p>Description</p>
           <Button size={"lg"}>Action</Button>
-          <LogoutBtn />
         </div>
       </div>
     </section>

@@ -12,8 +12,8 @@ export const navList = [
         href: "/theory/layout-vs-template",
       },
       {
-        label: "Lainnya",
-        href: "/theory",
+        label: "Theory Lainnya",
+        href: "/theory/theory-lainnya",
       },
     ],
   },
@@ -26,12 +26,8 @@ export const navList = [
         href: "/components/form",
       },
       {
-        label: "Lainnya1",
-        href: "/components",
-      },
-      {
-        label: "Lainnya2",
-        href: "/components",
+        label: "Components Lainnya",
+        href: "/components/components-lainnya",
       },
     ],
   },
