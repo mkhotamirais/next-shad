@@ -1,22 +1,22 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { getArticles } from "./actions";
 import ArticlesList from "./articles-list";
+import { Suspense } from "react";
+import LoaderClip from "@/components/loader-clip";
 
-export default async function ArticlesPage() {
-  const articles = await getArticles();
-  if (!articles) return <div>no articles</div>;
-
+export default function ArticlesPage() {
   return (
-    <div>
+    <div className="py-4">
       <div className="container">
-        <div className="flex py-4 items-center justify-between">
-          <h2>ArticlesPage</h2>
+        <div className="flex items-center justify-between pb-2">
+          <h2 className="text-primary text-2xl font-semibold">ArticlesPage</h2>
           <Button asChild>
             <Link href="/dashboard/articles/create">Create New</Link>
           </Button>
         </div>
-        <ArticlesList articles={articles} />
+        <Suspense fallback={<LoaderClip />}>
+          <ArticlesList />
+        </Suspense>
       </div>
     </div>
   );
