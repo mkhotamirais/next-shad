@@ -4,6 +4,8 @@ import ArticlesList from "./articles-list";
 import { Suspense } from "react";
 import LoaderClip from "@/components/loader-clip";
 
+export const revalidate = 0;
+
 export default function ArticlesPage() {
   return (
     <div className="py-4">
