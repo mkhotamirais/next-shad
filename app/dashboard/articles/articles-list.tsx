@@ -17,7 +17,7 @@ export default async function ArticlesList() {
           <p className="text-sm text-muted-foreground">{item.content}</p>
           <div className="z-10 absolute -translate-y-full group-hover:translate-y-0 right-0 top-0 p-2 flex gap-2 transition">
             <Button asChild size={"icon"}>
-              <Link href={`/dashboard/articles/${item.id}`}>
+              <Link href={`/dashboard/articles/update/${item.id}`}>
                 <FaPenToSquare />
               </Link>
             </Button>

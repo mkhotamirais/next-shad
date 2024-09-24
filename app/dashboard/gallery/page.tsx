@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import GalleryList from "./gallery-list";
 
+export const revalidate = 0;
+
 export default function GalleryPage() {
   return (
     <div className="py-4">

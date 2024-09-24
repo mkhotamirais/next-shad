@@ -9,7 +9,7 @@ export default async function GalleryList() {
   const data = await db.gallery.findMany({ orderBy: { createdAt: "desc" } });
 
   return (
-    <div className="grid grid-cols-6 gap-3">
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
       {data.map((item) => (
         <div key={item.id} className="relative group border rounded overflow-hidden">
           <Image

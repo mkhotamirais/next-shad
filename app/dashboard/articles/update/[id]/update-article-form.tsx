@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
 
@@ -19,19 +19,33 @@ const ArticleSchema = z.object({
 
 type ArticleForm = z.infer<typeof ArticleSchema>;
 
-export default function CreateArticleForm() {
+export default function UpdateArticleForm() {
   const [pending, setPending] = useState(false);
   const router = useRouter();
+  const params = useParams();
 
   const form = useForm<ArticleForm>({
     resolver: zodResolver(ArticleSchema),
     defaultValues: { title: "", content: "" },
   });
 
+  useEffect(() => {
+    if (!params.id) return;
+    axios
+      .get(`/api/articles/${params.id}`)
+      .then((res) => {
+        form.reset(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err?.response?.data?.message);
+      });
+  }, [params.id, form]);
+
   const onSubmit = async (values: ArticleForm) => {
     setPending(true);
     await axios
-      .post(`/api/articles`, values)
+      .patch(`/api/articles/${params.id}`, values)
       .then((res) => {
         toast.success(res?.data?.message);
         router.push("/dashboard/articles");
