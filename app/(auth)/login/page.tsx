@@ -21,6 +21,7 @@ export default async function LoginPage() {
   return (
     <section className="container">
       <div className="max-w-md mx-auto my-16 border rounded-xl p-6">
+        <h1 className="text-2xl font-semibold mb-3">Login</h1>
         <LoginOauth />
         <LoginForm />
         <Button asChild variant={"link"} className="mt-4 mx-auto w-full">
