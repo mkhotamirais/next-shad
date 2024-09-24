@@ -1,11 +1,24 @@
+import { Input } from "@/components/ui/input";
+import { navList } from "@/lib/nav-list";
+import Link from "next/link";
 import React from "react";
+
+const subMenuTheory = navList.find((item) => item.label === "Components")?.subMenu;
 
 export default function ComponentsPage() {
   return (
     <div>
       <div className="container">
-        <div className="flex items-center justify-center">
-          <h1>Components Page</h1>
+        <div className="">
+          <h1 className="text-lg py-3">Theory Page</h1>
+          <Input placeholder="Search here.." />
+          <div className="grid grid-cols-4 py-4 gap-4">
+            {subMenuTheory?.map((item, index) => (
+              <Link href={item.href} key={index} className="border rounded p-3">
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>

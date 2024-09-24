@@ -1,3 +1,9 @@
+import LoaderClip from "@/components/loader-clip";
+
 export default function LoadingPage() {
-  return <div className="bg-black">LoadingPage</div>;
+  return (
+    <div>
+      <LoaderClip />
+    </div>
+  );
 }

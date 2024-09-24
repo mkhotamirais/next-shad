@@ -38,7 +38,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (session.user) {
         session.user.name = token.name;
         session.user.email = token.email as string;
-        session.user.isOAuth = token.isOAuth as boolean;
       }
       return session;
     },
@@ -46,10 +45,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async jwt({ token }) {
       if (!token.sub) return token;
       const existingUser = await db.user.findUnique({ where: { id: token.sub } });
-      const existingAccount = await db.account.findUnique({ where: { id: existingUser?.id } });
 
       if (!existingUser) return token;
-      token.isOAuth = !!existingAccount;
       token.name = existingUser.name;
       token.eamil = existingUser.email;
       token.role = existingUser.role;

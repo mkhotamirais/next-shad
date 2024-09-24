@@ -55,7 +55,7 @@ export function DesktopNav() {
               )}
             </AnimatePresence>
             {item?.subMenu && (
-              <div className="p-2 absolute z-0 translate-y-10 group-hover:translate-y-0 group-hover:z-50 opacity-0 group-hover:opacity-100 bg-secondary border rounded-md transition">
+              <div className="p-2 absolute z-0 translate-y-10 group-hover:translate-y-0 group-hover:z-50 opacity-0 group-hover:opacity-100 bg-white dark:bg-slate-900 border rounded-md transition">
                 <div className="flex flex-col">
                   {item?.subMenu?.map((itm, idx) => (
                     <div

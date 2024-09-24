@@ -34,5 +34,19 @@ export const navList = [
   {
     label: "Dashboard",
     href: "/dashboard",
+    subMenu: [
+      {
+        label: "Articles",
+        href: "/dashboard/articles",
+      },
+      {
+        label: "Gallery",
+        href: "/dashboard/gallery",
+      },
+      {
+        label: "Products",
+        href: "/dashboard/products",
+      },
+    ],
   },
 ];

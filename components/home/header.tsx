@@ -35,11 +35,6 @@ export function Header() {
                   <DropdownMenuTrigger>
                     <Avatar>
                       <AvatarImage src={session?.user?.image || "https://github.com/shadcn.png"} />
-                      {/* <AvatarImage
-                        src={
-                          "https://lh3.googleusercontent.com/a/ACg8ocIOTbNjzxg6ldq-yiwcgldDQB-Bf8juilreVNz9YSlWoUCWvyU=s96-c"
-                        }
-                      /> */}
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                   </DropdownMenuTrigger>
