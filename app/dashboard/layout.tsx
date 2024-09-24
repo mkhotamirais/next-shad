@@ -19,5 +19,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!session) {
     redirect("/login");
   }
-  return <div>{children}</div>;
+
+  return <div className="container">{children}</div>;
 }
