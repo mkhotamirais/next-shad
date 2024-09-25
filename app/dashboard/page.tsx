@@ -14,7 +14,7 @@ export default function DashboardPage() {
     <div className="py-4">
       <h1 className="text-lg pb-2 font-semibold">Welcome {session?.user?.email} to your dashboard</h1>
       <Input placeholder="Search here.." />
-      <div className="grid grid-cols-4 py-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 py-4 gap-1 sm:gap-3">
         {subMenuDashboard?.map((item, index) => (
           <Link href={item.href} key={index} className="border rounded p-3">
             {item.label}
