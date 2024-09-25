@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 const ArticleSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -76,6 +77,7 @@ export default function CreateArticleForm() {
           )}
         />
         <Button disabled={pending} type="submit">
+          {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Submit
         </Button>
       </form>

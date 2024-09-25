@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import LoaderClip from "@/components/loader-clip";
 
 const ArticleSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -21,6 +23,7 @@ type ArticleForm = z.infer<typeof ArticleSchema>;
 
 export default function UpdateArticleForm() {
   const [pending, setPending] = useState(false);
+  const [pendingPage, setPendingPage] = useState(false);
   const router = useRouter();
   const params = useParams();
 
@@ -31,6 +34,7 @@ export default function UpdateArticleForm() {
 
   useEffect(() => {
     if (!params.id) return;
+    setPendingPage(true);
     axios
       .get(`/api/articles/${params.id}`)
       .then((res) => {
@@ -39,6 +43,9 @@ export default function UpdateArticleForm() {
       .catch((err) => {
         console.log(err);
         toast.error(err?.response?.data?.message);
+      })
+      .finally(() => {
+        setPendingPage(false);
       });
   }, [params.id, form]);
 
@@ -59,6 +66,8 @@ export default function UpdateArticleForm() {
         setPending(false);
       });
   };
+
+  if (pendingPage) return <LoaderClip />;
 
   return (
     <Form {...form}>
@@ -90,6 +99,7 @@ export default function UpdateArticleForm() {
           )}
         />
         <Button disabled={pending} type="submit">
+          {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Submit
         </Button>
       </form>

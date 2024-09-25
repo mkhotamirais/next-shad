@@ -16,6 +16,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 export default function ArticleDelDialog({ article }: { article: Article }) {
   const [pending, setPending] = useState(false);
@@ -54,6 +55,7 @@ export default function ArticleDelDialog({ article }: { article: Article }) {
           <DialogDescription>This action cannot be undone!</DialogDescription>
           <div className="flex gap-2 pt-4">
             <Button variant={"destructive"} disabled={pending} onClick={onDelete}>
+              {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               Delete
             </Button>
             <DialogClose asChild>

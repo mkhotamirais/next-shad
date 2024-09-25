@@ -8,10 +8,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loader2, Trash } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
+import LoaderClip from "@/components/loader-clip";
 
 const GallerySchema = z.object({
   name: z.string().min(1, "Title is required"),
@@ -21,17 +22,41 @@ const GallerySchema = z.object({
 
 type GalleryType = z.infer<typeof GallerySchema>;
 
-export default function CreateGalleryForm() {
+export default function UpdateGalleryForm() {
   const [preview, setPreview] = useState<string | undefined>(undefined);
   const [pending, setPending] = useState(false);
+  const [pendingPage, setPendingPage] = useState(false);
   const router = useRouter();
+  const params = useParams();
 
   const form = useForm<GalleryType>({
     resolver: zodResolver(GallerySchema),
     defaultValues: { name: "", image: undefined },
   });
 
+  useEffect(() => {
+    if (!params.id) return;
+    setPendingPage(true);
+    axios
+      .get(`/api/gallery/${params.id}`)
+      .then((res) => {
+        // form.reset(res.data);
+        form.reset({
+          name: res.data.name,
+        });
+        setPreview(res.data.image);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err?.response?.data?.message);
+      })
+      .finally(() => {
+        setPendingPage(false);
+      });
+  }, [params.id, form]);
+
   const onSubmit = async (values: GalleryType) => {
+    console.log(values);
     setPending(true);
     const formData = new FormData();
     const { name, image } = values;
@@ -42,7 +67,7 @@ export default function CreateGalleryForm() {
     }
 
     await axios
-      .post("/api/gallery", formData, {
+      .patch(`/api/gallery/${params.id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -60,6 +85,8 @@ export default function CreateGalleryForm() {
         setPending(false);
       });
   };
+
+  if (pendingPage) return <LoaderClip />;
 
   return (
     <Form {...form}>
