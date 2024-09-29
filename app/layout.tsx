@@ -32,7 +32,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} relative antialiased flex flex-col min-h-screen`}>
         <SessionProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
             <Toaster richColors />
             <Header />
             <main className="grow relative">{children}</main>

@@ -8,7 +8,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaMinus, FaPlus } from "react-icons/fa6";
-import { ModeToggle } from "../mode-toggle";
 
 export function MobileNav() {
   const { nav, openNav, closeNav } = useBasic();
@@ -33,10 +32,7 @@ export function MobileNav() {
         } fixed z-50 bg-secondary w-2/3 top-0 bottom-0 left-0 border-primary transition duration-200`}
       >
         <div className="p-3">
-          <div className="flex justify-between">
-            <Logo />
-            <ModeToggle className="flex md:hidden" />
-          </div>
+          <Logo />
           <div className="py-4 space-y-1">
             {navList.map((item, i) => (
               <div key={i}>

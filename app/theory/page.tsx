@@ -11,7 +11,7 @@ export default function TheoryPage() {
         <div className="">
           <h1 className="text-lg py-3">Theory Page</h1>
           <Input placeholder="Search here.." />
-          <div className="grid grid-cols-4 py-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 py-4 gap-4">
             {subMenuTheory?.map((item, index) => (
               <Link href={item.href} key={index} className="border rounded p-3">
                 {item.label}

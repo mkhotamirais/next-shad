@@ -1,14 +1,13 @@
 "use client";
 
+import HomeTools from "@/components/home-tools";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import React from "react";
 
 export default function HomePage() {
   const { data: session } = useSession();
-  if (session) {
-    console.log(session);
-  }
 
   return (
     <section className="py-32">
@@ -22,7 +21,7 @@ export default function HomePage() {
           <Button size={"lg"}>
             <Link href="/dashboard">Getting Started</Link>
           </Button>
-          <div></div>
+          <HomeTools />
         </div>
       </div>
     </section>
