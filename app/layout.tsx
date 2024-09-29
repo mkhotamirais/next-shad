@@ -30,6 +30,9 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} relative antialiased flex flex-col min-h-screen`}>
         <SessionProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
