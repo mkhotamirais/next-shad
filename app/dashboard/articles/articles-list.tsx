@@ -4,10 +4,15 @@ import Link from "next/link";
 import { FaPenToSquare } from "react-icons/fa6";
 import ArticleDelDialog from "./article-del-dialog";
 
-export default async function ArticlesList() {
-  const articles = await db.article.findMany({ orderBy: { createdAt: "desc" } });
-
+export default async function ArticlesList({ q }: { q: string }) {
+  const articles = await db.article.findMany({
+    orderBy: { createdAt: "desc" },
+    where: { title: { contains: q, mode: "insensitive" } },
+  });
+  // { where: { name: { contains: q, mode: "insensitive" } } }
   if (!articles) return <div>no data found</div>;
+
+  if (articles?.length === 0) return <div className="flex justify-center mt-8 italic">No data found</div>;
 
   return (
     <div className="space-y-2">
